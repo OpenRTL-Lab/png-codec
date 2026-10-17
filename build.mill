@@ -1,0 +1,31 @@
+//| mill-version: 1.1.7
+//| mill-jvm-version: system
+// OpenRTL file declaration
+// Organization: OpenRTL Lab (GitHub: OpenRTL-Lab)
+// Organization introduction: Open hardware, from algorithms to RTL.
+// Repository: png-codec
+// Repository introduction: Standalone lossless PNG encoder and decoder.
+// File: build.mill
+// Website: https://openrtl.top/
+// SPDX-License-Identifier: MIT
+package build
+import mill._
+import mill.scalalib._
+
+object png extends ScalaModule {
+  def scalaVersion = "2.13.18"
+  def chiselVersion = "7.13.0"
+  override def moduleDir = super.moduleDir / os.up
+  override def sources = Task.Sources(moduleDir / "src" / "main" / "scala")
+  override def scalacOptions = Seq("-language:reflectiveCalls", "-deprecation", "-feature", "-Xcheckinit")
+  override def mvnDeps = Seq(mvn"org.chipsalliance::chisel:$chiselVersion")
+  override def scalacPluginMvnDeps = Seq(mvn"org.chipsalliance:::chisel-plugin:$chiselVersion")
+  object tool extends ScalaModule {
+    def scalaVersion = png.scalaVersion
+    override def moduleDir = png.moduleDir
+    override def sources = Task.Sources(moduleDir / "src" / "tool" / "scala")
+    override def scalacOptions = png.scalacOptions
+    override def scalacPluginMvnDeps = png.scalacPluginMvnDeps
+    def moduleDeps = Seq(png)
+  }
+}

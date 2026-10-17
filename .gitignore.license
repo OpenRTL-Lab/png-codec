@@ -1,0 +1,8 @@
+Applies-To: .gitignore
+Organization: OpenRTL Lab (GitHub: OpenRTL-Lab)
+Organization introduction: Open hardware, from algorithms to RTL.
+Repository: png-codec
+Repository introduction: Standalone lossless PNG encoder and decoder.
+Website: https://openrtl.top/
+SPDX-License-Identifier: MIT
+Original copyright: 2026 OpenImage contributors; see LICENSE.

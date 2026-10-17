@@ -1,0 +1,5 @@
+/build/
+/out/
+/dependencies/
+__pycache__/
+*.pyc
